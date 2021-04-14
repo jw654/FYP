@@ -11,8 +11,8 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 
-const char* ssid = "VM8559363";
-const char* password = "Martial!11";
+const char* ssid = "Enter your SSID";
+const char* password = "Enter your password";
 
 AsyncWebServer server(80);
 AsyncEventSource events("/events");
