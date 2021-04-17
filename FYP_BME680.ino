@@ -11,8 +11,8 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 
-const char* ssid = "Enter your SSID";
-const char* password = "Enter your password";
+const char* ssid = "VM8559363";
+const char* password = "Martial!11";
 
 AsyncWebServer server(80);
 AsyncEventSource events("/events");
@@ -98,49 +98,49 @@ const char index_html[] PROGMEM = R"rawliteral(
 <head>
   <title>Real Time Air Quality</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="icon" href="data:,">
   <style>
-    html {font-family: Arial; display: inline-block; text-align: center;}
-    p {  font-size: 1.2rem;}
+    html { font-family: "Times New Roman"; display: inline-block; text-align: center; background-color: #e6ffff;}
     body {  margin: 0;}
-    .topnav { overflow: hidden; background-color: #4B1D3F; color: white; font-size: 1.7rem; }
-    .content { padding: 20px; }
-    .card { background-color: white; box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5); }
-    .cards { max-width: 700px; margin: 0 auto; display: grid; grid-gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .reading { font-size: 2.8rem; }
-    .card.temperature { color: #0e7c7b; }
-    .card.humidity { color: #17bebb; }
-    .card.pressure { color: #3fca6b; }
-    .card.gas { color: #d62246; }
-    .card.aq { color: #90ee90; margin-bottom: 20px; }
+    .title-box { overflow: hidden; background-color: #00b300;}
+    .readings-container { max-width: 700px; margin: 0 auto; display: grid; grid-gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .air-quality { color: #00b300;  margin-bottom: 20px; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); width: 700px; margin: auto; }
+    .temp { color: #2eb8b8; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-bottom: 20px; }
+    .gas { color: #cc0000; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-bottom: 20px; }
+    .pressure { color: #4d4dff; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); }
+    .humidity { color: #006699; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); }
+    
   </style>
 </head>
 <body>
-  <div class="topnav">
-    <h3>Real Time Air Quality</h3>
+<div class="title-box">
+  <h1>Air Quality Monitoring System</h1>
+</div>
+<div class="air-quality">
+  <h2>Air Quality Index</h2>
+  <p><span id="air">PLACEHOLDER FOR READINGS</span></p>
+</div>
+<div class="readings-container">
+  <div class="temp">
+<h2>Temperature</h2>
+<p><span id="temp">PLACEHOLDER FOR READINGS</span> &deg;C</p>
   </div>
-  <div class="content">
-   <div class = cards>
-  <div class="card aq">
-            <h4><i class="fas fa-seedling"></i> Air Quality</h4><p><span class="reading"><span id="air">%Air Quality%</span></p>
-        </div>
-    </div>
-    <div class="cards">
-      <div class="card temperature">
-        <h4><i class="fas fa-thermometer-half"></i> TEMPERATURE</h4><p><span class="reading"><span id="temp">%TEMPERATURE%</span> &deg;C</span></p>
-      </div>
-      <div class="card humidity">
-        <h4><i class="fas fa-tint"></i> HUMIDITY</h4><p><span class="reading"><span id="hum">%HUMIDITY%</span> &percnt;</span></p>
-      </div>
-      <div class="card pressure">
-        <h4><i class="fas fa-angle-double-down"></i> PRESSURE</h4><p><span class="reading"><span id="pres">%PRESSURE%</span> hPa</span></p>
-      </div>
-      <div class="card gas">
-        <h4><i class="fas fa-wind"></i> GAS</h4><p><span class="reading"><span id="gas">%GAS%</span> K&ohm;</span></p>
-      </div>
-    </div>
+
+  <div class="gas">
+<h2>Gas</h2>
+<p><span id="gas">PLACEHOLDER FOR READINGS</span> K&ohm;</p>
   </div>
+</div>
+<div class="readings-container">
+  <div class="pressure">
+<h2>Pressure</h2>
+<p><span id="pres">PLACEHOLDER FOR READINGS</span> hPa</p>
+  </div>
+
+  <div class="humidity">
+<h2>Humidity</h2>
+<p><span id="hum">PLACEHOLDER FOR READINGS</span> &percnt;</p>
+  </div>
+</div>
 <script>
 if (!!window.EventSource) {
  var source = new EventSource('/events');
